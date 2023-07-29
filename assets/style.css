@@ -1,0 +1,28 @@
+.body {
+    font-family: Tahoma, Arial, Helvetica, Geneva, sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    background-color: rgb(217, 197, 232);
+    border-radius: 10px;
+    border: 3px;
+    outline-color: rgb(48, 11, 75);
+    outline-style: solid;
+    outline-width: medium;
+    outline: auto;
+    padding: 5px 40px;
+}
+
+.timer {
+    /* Need to make this to the right */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.answer{
+
+}
