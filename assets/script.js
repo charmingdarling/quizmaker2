@@ -1,15 +1,14 @@
 // Local Scope Variables//
-let start_quiz = document.querySelector(".start_quiz");
-let begin = document.getElementById("beginbutton");
-let quizContainer = document.querySelector(".quiz");
+
 let scoreContainer = document.querySelector(".score");
-let timeEl = document.querySelector(".timer");
-let secondsLeft = 100;
-let question = document.querySelector("#question");
-let answerbank = document.querySelector("#answerbank");
+
 let finalscore = document.querySelector("#finalscore");
 
 //------------- Start Section -------------//
+
+let start_quiz = document.querySelector(".start_quiz");
+let begin = document.getElementById("beginbutton");
+let quizContainer = document.querySelector(".quiz");
 
 begin.addEventListener("click", (e) => {
   console.log("Begin button clicked.");
@@ -21,6 +20,9 @@ begin.addEventListener("click", (e) => {
 });
 
 //------------- Timer Section -------------//
+
+let timeEl = document.querySelector(".timer");
+let secondsLeft = 100;
 
 function timerSet() {
   timerInterval = setInterval(function () {
@@ -41,51 +43,78 @@ function sendMessage() {
 
 //------------- Question Function Section -------------//
 
+let answerList = document.querySelector("#answerbank");
+let question = document.querySelector("#question");
+
 function showNextQuestion() {
   var currentquestion = questionsbank[q_index];
-  var questionasked = document.querySelector("#question");
-  questionasked.textContent = currentquestion.question;
-  answerbank.innerHTML = ""; //clears out section before populating new answer
+  question.textContent = currentquestion.question; //In the Question ID, replace the textContent with the current question.
+  answerList.innerHTML = ""; //clears out section before populating new answer
 
   for (var i = 0; i < currentquestion.answers.length; i++) {
-    var answer = currentquestion.answers[i];
-    var answerLi = document.createElement("li");
-    var button = document.createElement("button");
-    button.textContent = answer;
-    answerbank.append(answerLi);
-    answerLi.append(button);
-    button.classList.add("answerchoice");
-    button.addEventListener("click", (e) => {
-      q_index++;
-
-      if (q_index < questionsbank.length) {
-        showNextQuestion();
-      } else {
-        endquiz();
-      }
-    });
+    let answer = currentquestion.answers[i];
+    let answerbutton = document.createElement("button");
+    let answerLi = document.createElement("li");
+    answerbutton.setAttribute("class", "answerbutton");
+    answerbutton.setAttribute("value", answer);
+    answerbutton.textContent = i + 1 + ". " + answer;
+    answerList.appendChild(answerbutton);
+    answerList.appendChild(answerLi);
   }
 }
 
 //------------- Answer Function Section -------------//
 
-function answerQuestion(event) {
-  var answerEl = event.target;
-  //^-Determines what User clicked on //
-  //v-Hoping to determine that if they don't click on an answer button, nothing happens.
-  if (!answerEl.matches(".answerchoice")) {
+let feedback = document.querySelector("#feedback");
+
+function answerQuestion(e) {
+  let answerClicked = e.target;
+  if (!answerClicked.matches("answerbutton")) {
     return;
   }
-  if (answerEl.value !== questionsbank[q_index].correct) {
+  if (answerClicked.value !== questionsbank[q_index].correct) {
     secondsLeft -= 10;
     if (secondsLeft < 0) {
       secondsLeft = 0;
     }
-    document.querySelector("#feedback").textContent = "Whoops...";
+    document.querySelector("#feedback").textContent = "Whoops";
   } else {
-    document.querySelector("#feedback").textContent = "You got it!";
+    document.querySelector("#feedback").textContent = "You got this!";
+  }
+  document.querySelector("#feedback").removeAttribute("class");
+  setTimeout(function () {
+    document.querySelector("#feedback").setAttribute("class", "hidden");
+  }, 1500);
+  q_index++;
+  if (secondsLeft <= 0 || q_index === questionsbank.length) {
+    endquiz();
+  } else {
+    showNextQuestion;
   }
 }
+
+let answerBank = document.querySelector("#answerbank");
+answerBank.onclick = answerQuestion;
+
+//------------- Answer Function Section -------------//
+
+// function answerQuestion(event) {
+//   var answerEl = event.target;
+//   //^-Determines what User clicked on //
+//   //v-Hoping to determine that if they don't click on an answer button, nothing happens.
+//   if (!answerEl.matches(".answerchoice")) {
+//     return;
+//   }
+//   if (answerEl.value !== questionsbank[q_index].correct) {
+//     secondsLeft -= 10;
+//     if (secondsLeft < 0) {
+//       secondsLeft = 0;
+//     }
+//     document.querySelector("#feedback").textContent = "Whoops...";
+//   } else {
+//     document.querySelector("#feedback").textContent = "You got it!";
+//   }
+// }
 
 //------------- End Quiz Section -------------//
 

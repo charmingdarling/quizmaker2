@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Javascript Quiz</title>
-    <link rel="stylesheet" href="/assets/style.css">
-</head>
-<body>
-
-<!-- Start Screen, Timer
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <!-- Start Screen, Timer
 Quiz, When User Clicks, Show Correct/Incorrect/Dock Timer
 Score, Entering Initials
 Leaderboard, Return to Start Button, Clear Rest the Score Board Button -->
-<section class="time">
-    <div class="timer"><span>Time:</span></div>
-</section>
-    
-<section class="container">
-    <section>
+    <section class="time">
+      <div class="timer"><span>Time:</span></div>
+    </section>
+
+    <section class="container">
+      <section>
         <div class="start_quiz">
-            <h1>Javascript Quiz Challenge</h1>
-            <p>Take this Javascript Quiz to see if you know your stuff!</p>
-            <button id="beginbutton">Begin</button>
+          <h1>Javascript Quiz Challenge</h1>
+          <p>Take this Javascript Quiz to see if you know your stuff!</p>
+          <button id="beginbutton">Begin</button>
         </div>
-    </section>
-   
-    <section class="quiz hidden">
+      </section>
+
+      <section class="quiz hidden">
         <div>
-            <h2 id="question">Question</h2>
-                <ul id="answerbank" class="">
-                    <!-- <li><button class="answer" type="button">Answer A</button></li>
-                    <li><button class="answer" type="button">Answer B</li>
-                    <li><button class="answer" type="button">Answer C</li>
-                    <li><button class="answer" type="button">Answer D</li> -->
-                </ul>
+          <h2 id="question">Question</h2>
+          <ul id="answerbank" class="">
+            <!-- <li><button class="answer" type="button">Answer A</button></li>
+            <li><button class="answer" type="button">Answer B</button></li>
+            <li><button class="answer" type="button">Answer C</button></li>
+            <li><button class="answer" type="button">Answer D</button></li> -->
+          </ul>
         </div>
-        <hr>
-        <div id="feedback" class="hidden">
-            <p>Incorrect/Correct</p>
-        </div>
-    </section>
+        <hr />
+        <div id="feedback" class="hidden"></div>
+      </section>
 
-    <div class="score hidden">
+      <div class="score hidden">
         <p>Final Score: <span id="finalscore">##</span></p>
-        <input type="text" placeholder="Enter Your Name">
+        <input type="text" placeholder="Enter Your Name" />
         <p><button class="submittoscoreboard">Submit to Score Board</button></p>
-    </div>
+      </div>
 
-    <div class="scorelist hidden">
+      <div class="scorelist hidden">
         <h2>High Scores</h2>
 
         <p>
-            <button class="return">Return</button>
-            <button class="reset">Reset Scores</button>
+          <button class="return">Return</button>
+          <button class="reset">Reset Scores</button>
         </p>
-    </div>
+      </div>
+    </section>
 
-</section>
-
-<script src="/assets/script.js"></script>
-</body>
+    <script src="/assets/script.js"></script>
+  </body>
 </html>
